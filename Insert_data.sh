@@ -19,7 +19,7 @@ do
     OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'");
     if [[ -z $OPPONENT_ID ]]
     then 
-      $($PSQL "INSERT INTO teams(name) VALUES ('$OPPONENT')") 
+      $($PSQL "INSERT INTO teams(name) WHERE VALUES ('$OPPONENT')") 
     fi
   fi
 done
