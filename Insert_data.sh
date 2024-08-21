@@ -8,7 +8,7 @@ do
   then
 
     
-    WINNER_ID=$($PSQL "SELECT team_id FROM name='$WINNER'");
+    WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'");
     if [[ -z $WINNER_ID ]]
     then 
       $($PSQL "INSERT INTO teams(name) VALUES('$WINNER')")
@@ -16,7 +16,7 @@ do
 
   #----------------------------  
     
-    OPPONENT_ID=$(PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'");
+    OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'");
     if [[ -z $OPPONENT_ID ]]
     then 
       $($PSQL "INSERT INTO teams(name) VALUES ('$OPPONENT')") 
