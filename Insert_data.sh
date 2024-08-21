@@ -2,6 +2,7 @@ chmod +x insert_data.sh
 ./insert_data.sh
 
 
+#--------------------------
 cat games.csv | while IFS="," read YEAR ROUND WINNER OPPONENT WINNER_GOALS OPPONENT_GOALS
 do
   if [[ $YEAR != "year" ]]
@@ -21,7 +22,13 @@ do
     then 
       $($PSQL "INSERT INTO teams(name) WHERE VALUES ('$OPPONENT')") 
     fi
+
+
+#--------------------------
+      $($PSQL "INSERT INTO games(winner_id, opponent_id, winner_goals, opponent_goals, year, round) VALUES ($WINNER_ID, $OPPONENT_ID, $WINNER_GOALS, $OPPONENT_GOALS, $YEAR, '$ROUND')")
+
+
   fi
 done
 
-# ./insert_data.sh test 
+
