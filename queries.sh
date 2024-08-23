@@ -32,10 +32,10 @@ echo -e "\nList of teams who played in the 2014 'Eighth-Final' round:"
 echo "$($PSQL "SELECT name FROM teams WHERE team_id IN (SELECT team_id FROM games WHERE (winner_id = team_id OR opponent_id = team_id) AND round = 'Eighth-Final' AND year = 2014 ) ORDER BY name ")"
 
 echo -e "\nList of unique winning team names in the whole data set:"
-echo "$($PSQL "SELECT DISTINCT t.name FROM teams t JOIN games g ON g.winner_id = t.team_id"  )"
+echo "$($PSQL "SELECT DISTINCT t.name FROM teams t JOIN games g ON g.winner_id = t.team_id ORDER BY name"  )"
 
 echo -e "\nYear and team name of all the champions:"
-echo "$($PSQL "SELECT g.year, t.name FROM games g JOIN teams t ON g.winner_id = t.team_id WHERE g.round = 'Final' ")"
+echo "$($PSQL "SELECT g.year, t.name FROM games g JOIN teams t ON g.winner_id = t.team_id WHERE g.round = 'Final' ORDER BY year")"
 
 echo -e "\nList of teams that start with 'Co':"
 echo "$($PSQL "SELECT name FROM teams WHERE name LIKE 'Co%' "  )"
